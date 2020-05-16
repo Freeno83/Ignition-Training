@@ -12,8 +12,8 @@ Allows "VFD like" control of a DC motor via modbus TCP
 #include <WiFi.h>
 #include <ModbusIP_ESP8266.h>
 
-char ssid[] = "Kaisoku";
-char pass[] = "Tsunagaru";
+char ssid[] = "Wifi Name";
+char pass[] = "Password";
 
 //Declare a ModbusIP instance
 
