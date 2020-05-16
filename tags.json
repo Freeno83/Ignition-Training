@@ -1,81 +1,748 @@
 {
-  "name": "DC Motor",
-  "tagType": "UdtType",
+  "name": "",
+  "tagType": "Provider",
   "tags": [
     {
-      "name": "Control",
+      "name": "HTTP",
       "tagType": "Folder",
       "tags": [
         {
-          "valueSource": "opc",
-          "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.hReg3",
-          "engHigh": 256.0,
-          "name": "Target Speed",
-          "engLimitMode": "Clamp_Both",
-          "tagType": "AtomicTag",
-          "opcServer": "Ignition OPC UA Server"
+          "name": "Relay",
+          "typeId": "HTTP Adafruit",
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "value": "1.589566512E9",
+              "name": "created_epoch",
+              "tagType": "AtomicTag"
+            },
+            {
+              "value": "2020-05-15T18:15:12Z",
+              "name": "created_at",
+              "tagType": "AtomicTag"
+            },
+            {
+              "value": "OFF",
+              "name": "value",
+              "tagType": "AtomicTag"
+            },
+            {
+              "value": "2020-06-14T18:15:12Z",
+              "name": "expiration",
+              "tagType": "AtomicTag"
+            },
+            {
+              "value": "0EEKZQJ8YB73PCT643RES1BQST",
+              "name": "id",
+              "tagType": "AtomicTag"
+            },
+            {
+              "value": "1345936.0",
+              "name": "feed_id",
+              "tagType": "AtomicTag"
+            },
+            {
+              "value": "onoff",
+              "name": "feed_key",
+              "tagType": "AtomicTag"
+            }
+          ]
         },
         {
-          "valueSource": "opc",
-          "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.Coil0",
-          "dataType": "Boolean",
-          "name": "stopRun",
-          "tagType": "AtomicTag",
-          "opcServer": "Ignition OPC UA Server"
+          "valueSource": "memory",
+          "dataType": "Float4",
+          "historyProvider": "MariaDB",
+          "historicalDeadband": 0.1,
+          "name": "Outside Temp degC",
+          "historyEnabled": true,
+          "value": 15.54,
+          "tagType": "AtomicTag"
         },
         {
-          "valueSource": "opc",
-          "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.hReg0",
-          "engHigh": 256.0,
-          "name": "Ramp Speed",
-          "engLimitMode": "Clamp_Both",
-          "tagType": "AtomicTag",
-          "opcServer": "Ignition OPC UA Server"
-        },
-        {
-          "valueSource": "opc",
-          "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.Coil1",
-          "dataType": "Boolean",
-          "name": "fwdRev",
-          "tagType": "AtomicTag",
-          "opcServer": "Ignition OPC UA Server"
+          "valueSource": "memory",
+          "historyProvider": "MariaDB",
+          "historicalDeadband": 0.1,
+          "name": "Photocell",
+          "historyEnabled": true,
+          "value": 0,
+          "tagType": "AtomicTag"
         }
       ]
     },
     {
-      "name": "Status",
+      "name": "Adafruit",
       "tagType": "Folder",
       "tags": [
         {
-          "valueSource": "expr",
-          "accessRights": "Read_Only",
-          "expression": "if({[.]Current Speed} \u003d 0, True, False)",
-          "dataType": "Boolean",
-          "historyProvider": "MariaDB",
-          "name": "Stopped",
-          "historyEnabled": true,
-          "tagType": "AtomicTag"
-        },
+          "name": "DC Motor",
+          "typeId": "DC Motor",
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Status",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "Stopped",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Running",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Current Speed",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
+            {
+              "name": "Control",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "fwdRev",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Target Speed",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Ramp Speed",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "stopRun",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Arduino",
+      "tagType": "Folder",
+      "tags": [
         {
           "valueSource": "opc",
           "accessRights": "Read_Only",
-          "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.hReg2",
-          "historyProvider": "MariaDB",
-          "historicalDeadband": 0.1,
-          "name": "Current Speed",
-          "historyEnabled": true,
+          "opcItemPath": "ns\u003d1;s\u003d[Arduino]1.Coil0",
+          "dataType": "Boolean",
+          "name": "Push Button",
           "tagType": "AtomicTag",
           "opcServer": "Ignition OPC UA Server"
         },
         {
-          "valueSource": "expr",
-          "accessRights": "Read_Only",
-          "expression": "if({[.]Current Speed} \u003e 0, True, False)",
-          "historyProvider": "MariaDB",
+          "valueSource": "opc",
+          "opcItemPath": "ns\u003d1;s\u003d[Arduino]1.Coil3",
           "dataType": "Boolean",
-          "name": "Running",
-          "historyEnabled": true,
+          "name": "Blue LED",
+          "tagType": "AtomicTag",
+          "opcServer": "Ignition OPC UA Server"
+        },
+        {
+          "name": "Temperature",
+          "typeId": "Temp Sensor",
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "DegF",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "Raw Value",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "DegC",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "valueSource": "opc",
+          "opcItemPath": "ns\u003d1;s\u003d[Arduino]1.Coil1",
+          "dataType": "Boolean",
+          "name": "Red LED",
+          "tagType": "AtomicTag",
+          "opcServer": "Ignition OPC UA Server"
+        },
+        {
+          "name": "Motor",
+          "typeId": "VFD",
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Control",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "fwdRev",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "accelDecel",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "driveFreq",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "stopRun",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
+            {
+              "name": "Status",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "Forward",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Reverse",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Running",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Running Rev",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Stopping",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Fwd to Rev",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Running Fwd",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Status1",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Rev to Fwd",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Stopped",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Standby",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Status2",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "Jog Active",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "RPM",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "valueSource": "opc",
+          "opcItemPath": "ns\u003d1;s\u003d[Arduino]1.Coil2",
+          "dataType": "Boolean",
+          "name": "Green LED",
+          "tagType": "AtomicTag",
+          "opcServer": "Ignition OPC UA Server"
+        },
+        {
+          "name": "Potentiometer",
+          "typeId": "Voltage",
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Voltage",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "Raw Value",
+              "tagType": "AtomicTag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "valueSource": "memory",
+          "name": "ReportTimeRange",
+          "value": 1,
           "tagType": "AtomicTag"
+        }
+      ]
+    },
+    {
+      "name": "_types_",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "name": "Temp Sensor",
+          "tagType": "UdtType",
+          "tags": [
+            {
+              "valueSource": "expr",
+              "accessRights": "Read_Only",
+              "expression": "(((({[.]Raw Value} / 1024) * 3.3) * 100) - 32) * (5 / 9)",
+              "dataType": "Float4",
+              "historyProvider": "MariaDB",
+              "historicalDeadband": 0.1,
+              "name": "DegC",
+              "historyEnabled": true,
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "expr",
+              "accessRights": "Read_Only",
+              "expression": "((({[.]Raw Value} / 1024) * 3.3) * 100)",
+              "dataType": "Float4",
+              "historyProvider": "MariaDB",
+              "historicalDeadband": 0.1,
+              "name": "DegF",
+              "historyEnabled": true,
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "opc",
+              "accessRights": "Read_Only",
+              "opcItemPath": "ns\u003d1;s\u003d[Arduino]1.hReg1",
+              "name": "Raw Value",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            }
+          ]
+        },
+        {
+          "name": "HTTP Adafruit",
+          "tagType": "UdtType",
+          "tags": [
+            {
+              "valueSource": "memory",
+              "dataType": "String",
+              "name": "created_epoch",
+              "formatString": "#,##0.##",
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "String",
+              "name": "value",
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "String",
+              "name": "id",
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "String",
+              "name": "feed_key",
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "String",
+              "name": "feed_id",
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "String",
+              "name": "created_at",
+              "formatString": "#,##0.##",
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "String",
+              "name": "expiration",
+              "formatString": "#,##0.##",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "VFD",
+          "parameters": {
+            "VFD Number": "1"
+          },
+          "tagType": "UdtType",
+          "tags": [
+            {
+              "name": "Status",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "valueSource": "opc",
+                  "accessRights": "Read_Only",
+                  "opcItemPath": "ns\u003d1;s\u003d[Arduino]1.hReg5",
+                  "name": "Status1",
+                  "tagType": "AtomicTag",
+                  "opcServer": "Ignition OPC UA Server"
+                },
+                {
+                  "valueSource": "expr",
+                  "accessRights": "Read_Only",
+                  "expression": "getBit({[.]Status2}, 3) \u0026\u0026 !getBit({[.]Status2}, 4)",
+                  "dataType": "Boolean",
+                  "historyProvider": "MariaDB",
+                  "name": "Rev to Fwd",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "expr",
+                  "accessRights": "Read_Only",
+                  "expression": "{[.]Running} \u0026\u0026 ({[.]Forward} || {[.]Fwd to Rev}) ",
+                  "dataType": "Boolean",
+                  "historyProvider": "MariaDB",
+                  "name": "Running Fwd",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "expr",
+                  "accessRights": "Read_Only",
+                  "expression": "!getBit({[.]Status2}, 0) \u0026\u0026 !getBit({[.]Status2}, 1)",
+                  "dataType": "Boolean",
+                  "historyProvider": "MariaDB",
+                  "name": "Stopped",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "opc",
+                  "accessRights": "Read_Only",
+                  "opcItemPath": "ns\u003d1;s\u003d[Arduino]1.hReg6",
+                  "name": "Status2",
+                  "tagType": "AtomicTag",
+                  "opcServer": "Ignition OPC UA Server"
+                },
+                {
+                  "valueSource": "expr",
+                  "accessRights": "Read_Only",
+                  "expression": "getBit({[.]Status2}, 2)",
+                  "dataType": "Boolean",
+                  "historyProvider": "MariaDB",
+                  "name": "Jog Active",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "opc",
+                  "accessRights": "Read_Only",
+                  "opcItemPath": "ns\u003d1;s\u003d[Arduino]1.hReg4",
+                  "historyProvider": "MariaDB",
+                  "engHigh": 60.0,
+                  "name": "RPM",
+                  "historyEnabled": true,
+                  "engLimitMode": "Clamp_Both",
+                  "tagType": "AtomicTag",
+                  "opcServer": "Ignition OPC UA Server"
+                },
+                {
+                  "valueSource": "expr",
+                  "accessRights": "Read_Only",
+                  "expression": "getBit({[.]Status2}, 3) \u0026\u0026 getBit({[.]Status2}, 4)",
+                  "dataType": "Boolean",
+                  "historyProvider": "MariaDB",
+                  "name": "Reverse",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "expr",
+                  "accessRights": "Read_Only",
+                  "expression": "!getBit({[.]Status2}, 3) \u0026\u0026 !getBit({[.]Status2}, 4)",
+                  "dataType": "Boolean",
+                  "historyProvider": "MariaDB",
+                  "name": "Forward",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "expr",
+                  "accessRights": "Read_Only",
+                  "expression": "{[.]Running} \u0026\u0026 ({[.]Reverse} || {[.]Rev to Fwd}) ",
+                  "dataType": "Boolean",
+                  "historyProvider": "MariaDB",
+                  "name": "Running Rev",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "expr",
+                  "accessRights": "Read_Only",
+                  "expression": "!getBit({[.]Status2}, 0) \u0026\u0026 !getBit({[.]Status2}, 1)",
+                  "dataType": "Boolean",
+                  "historyProvider": "MariaDB",
+                  "name": "Standby",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "expr",
+                  "accessRights": "Read_Only",
+                  "expression": "getBit({[.]Status2}, 0) \u0026\u0026 getBit({[.]Status2}, 1)",
+                  "dataType": "Boolean",
+                  "historyProvider": "MariaDB",
+                  "name": "Running",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "expr",
+                  "accessRights": "Read_Only",
+                  "expression": "getBit({[.]Status2}, 0) \u0026\u0026 !getBit({[.]Status2}, 1)",
+                  "dataType": "Boolean",
+                  "historyProvider": "MariaDB",
+                  "name": "Stopping",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "expr",
+                  "accessRights": "Read_Only",
+                  "expression": "!getBit({[.]Status2}, 3) \u0026\u0026 getBit({[.]Status2}, 4)",
+                  "dataType": "Boolean",
+                  "historyProvider": "MariaDB",
+                  "name": "Fwd to Rev",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
+            {
+              "name": "Control",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "valueSource": "opc",
+                  "opcItemPath": "ns\u003d1;s\u003d[Arduino]1.Coil5",
+                  "dataType": "Boolean",
+                  "name": "fwdRev",
+                  "tagType": "AtomicTag",
+                  "opcServer": "Ignition OPC UA Server"
+                },
+                {
+                  "valueSource": "opc",
+                  "opcItemPath": "ns\u003d1;s\u003d[Arduino]1.hReg3",
+                  "name": "accelDecel",
+                  "engLimitMode": "Clamp_Both",
+                  "tagType": "AtomicTag",
+                  "opcServer": "Ignition OPC UA Server"
+                },
+                {
+                  "valueSource": "opc",
+                  "opcItemPath": "ns\u003d1;s\u003d[Arduino]1.hReg2",
+                  "engHigh": 60.0,
+                  "name": "driveFreq",
+                  "engLimitMode": "Clamp_Both",
+                  "tagType": "AtomicTag",
+                  "engLow": 0.0,
+                  "opcServer": "Ignition OPC UA Server"
+                },
+                {
+                  "valueSource": "opc",
+                  "opcItemPath": "ns\u003d1;s\u003d[Arduino]1.Coil4",
+                  "dataType": "Boolean",
+                  "name": "stopRun",
+                  "tagType": "AtomicTag",
+                  "opcServer": "Ignition OPC UA Server"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Voltage",
+          "tagType": "UdtType",
+          "tags": [
+            {
+              "valueSource": "opc",
+              "accessRights": "Read_Only",
+              "opcItemPath": "ns\u003d1;s\u003d[Arduino]1.hReg0",
+              "historyProvider": "MariaDB",
+              "historicalDeadband": 0.1,
+              "name": "Raw Value",
+              "historyEnabled": false,
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "valueSource": "expr",
+              "accessRights": "Read_Only",
+              "expression": "({[.]Raw Value} / 1024) * 3.25",
+              "dataType": "Float4",
+              "historyProvider": "MariaDB",
+              "historicalDeadband": 0.1,
+              "name": "Voltage",
+              "historyEnabled": true,
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "DC Motor",
+          "tagType": "UdtType",
+          "tags": [
+            {
+              "name": "Control",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "valueSource": "opc",
+                  "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.hReg3",
+                  "engHigh": 256.0,
+                  "name": "Target Speed",
+                  "engLimitMode": "Clamp_Both",
+                  "tagType": "AtomicTag",
+                  "opcServer": "Ignition OPC UA Server"
+                },
+                {
+                  "valueSource": "opc",
+                  "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.Coil0",
+                  "dataType": "Boolean",
+                  "name": "stopRun",
+                  "tagType": "AtomicTag",
+                  "opcServer": "Ignition OPC UA Server"
+                },
+                {
+                  "valueSource": "opc",
+                  "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.hReg0",
+                  "engHigh": 256.0,
+                  "name": "Ramp Speed",
+                  "engLimitMode": "Clamp_Both",
+                  "tagType": "AtomicTag",
+                  "opcServer": "Ignition OPC UA Server"
+                },
+                {
+                  "valueSource": "opc",
+                  "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.Coil1",
+                  "dataType": "Boolean",
+                  "name": "fwdRev",
+                  "tagType": "AtomicTag",
+                  "opcServer": "Ignition OPC UA Server"
+                }
+              ]
+            },
+            {
+              "name": "Status",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "valueSource": "expr",
+                  "accessRights": "Read_Only",
+                  "expression": "if({[.]Current Speed} \u003d 0, True, False)",
+                  "dataType": "Boolean",
+                  "historyProvider": "MariaDB",
+                  "name": "Stopped",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "opc",
+                  "accessRights": "Read_Only",
+                  "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.hReg2",
+                  "historyProvider": "MariaDB",
+                  "historicalDeadband": 0.1,
+                  "name": "Current Speed",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag",
+                  "opcServer": "Ignition OPC UA Server"
+                },
+                {
+                  "valueSource": "expr",
+                  "accessRights": "Read_Only",
+                  "expression": "if({[.]Current Speed} \u003e 0, True, False)",
+                  "historyProvider": "MariaDB",
+                  "dataType": "Boolean",
+                  "name": "Running",
+                  "historyEnabled": true,
+                  "tagType": "AtomicTag"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Click PLC",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "valueSource": "opc",
+          "accessRights": "Read_Write",
+          "opcItemPath": "ns\u003d1;s\u003d[Click PLC]1.Coil5",
+          "dataType": "Boolean",
+          "name": "Blink",
+          "tagType": "AtomicTag",
+          "opcServer": "Ignition OPC UA Server"
+        },
+        {
+          "valueSource": "opc",
+          "accessRights": "Read_Write",
+          "opcItemPath": "ns\u003d1;s\u003d[Click PLC]1.Coil4",
+          "dataType": "Boolean",
+          "name": "Red Light",
+          "tagType": "AtomicTag",
+          "opcServer": "Ignition OPC UA Server"
+        },
+        {
+          "valueSource": "opc",
+          "accessRights": "Read_Write",
+          "opcItemPath": "ns\u003d1;s\u003d[Click PLC]1.Coil2",
+          "dataType": "Boolean",
+          "name": "Green Light",
+          "tagType": "AtomicTag",
+          "opcServer": "Ignition OPC UA Server"
+        },
+        {
+          "valueSource": "opc",
+          "accessRights": "Read_Write",
+          "opcItemPath": "ns\u003d1;s\u003d[Click PLC]1.Coil3",
+          "dataType": "Boolean",
+          "name": "Yellow Light",
+          "tagType": "AtomicTag",
+          "opcServer": "Ignition OPC UA Server"
+        },
+        {
+          "valueSource": "opc",
+          "accessRights": "Read_Write",
+          "opcItemPath": "ns\u003d1;s\u003d[Click PLC]1.Coil1",
+          "dataType": "Boolean",
+          "name": "Desk Lamp",
+          "tagType": "AtomicTag",
+          "opcServer": "Ignition OPC UA Server"
         }
       ]
     }
