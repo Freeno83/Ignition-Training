@@ -1,0 +1,83 @@
+{
+  "name": "DC Motor",
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "name": "Control",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "valueSource": "opc",
+          "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.hReg3",
+          "engHigh": 256.0,
+          "name": "Target Speed",
+          "engLimitMode": "Clamp_Both",
+          "tagType": "AtomicTag",
+          "opcServer": "Ignition OPC UA Server"
+        },
+        {
+          "valueSource": "opc",
+          "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.Coil0",
+          "dataType": "Boolean",
+          "name": "stopRun",
+          "tagType": "AtomicTag",
+          "opcServer": "Ignition OPC UA Server"
+        },
+        {
+          "valueSource": "opc",
+          "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.hReg0",
+          "engHigh": 256.0,
+          "name": "Ramp Speed",
+          "engLimitMode": "Clamp_Both",
+          "tagType": "AtomicTag",
+          "opcServer": "Ignition OPC UA Server"
+        },
+        {
+          "valueSource": "opc",
+          "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.Coil1",
+          "dataType": "Boolean",
+          "name": "fwdRev",
+          "tagType": "AtomicTag",
+          "opcServer": "Ignition OPC UA Server"
+        }
+      ]
+    },
+    {
+      "name": "Status",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "valueSource": "expr",
+          "accessRights": "Read_Only",
+          "expression": "if({[.]Current Speed} \u003d 0, True, False)",
+          "dataType": "Boolean",
+          "historyProvider": "MariaDB",
+          "name": "Stopped",
+          "historyEnabled": true,
+          "tagType": "AtomicTag"
+        },
+        {
+          "valueSource": "opc",
+          "accessRights": "Read_Only",
+          "opcItemPath": "ns\u003d1;s\u003d[Adafruit]1.hReg2",
+          "historyProvider": "MariaDB",
+          "historicalDeadband": 0.1,
+          "name": "Current Speed",
+          "historyEnabled": true,
+          "tagType": "AtomicTag",
+          "opcServer": "Ignition OPC UA Server"
+        },
+        {
+          "valueSource": "expr",
+          "accessRights": "Read_Only",
+          "expression": "if({[.]Current Speed} \u003e 0, True, False)",
+          "historyProvider": "MariaDB",
+          "dataType": "Boolean",
+          "name": "Running",
+          "historyEnabled": true,
+          "tagType": "AtomicTag"
+        }
+      ]
+    }
+  ]
+}
