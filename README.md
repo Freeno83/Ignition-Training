@@ -1,5 +1,5 @@
 # Ignition-Training
-Training materials for learning Ignition SCADA from home 
+
 This is an example project for learning Ignition SCADA at home.
 Attached above is code and explanation for controlling a DC motor.
 At the links below are the other hardware which are connected to this project:
